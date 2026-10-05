@@ -721,7 +721,6 @@ const CORONA_CONFIG = {
   name: 'Corona',
   subtitle: 'Assistente virtual · respostas automáticas',
   hello: 'Olá! Eu sou a Corona, assistente virtual da Botanicum Ancestral. Pergunte sobre plantas, cultivo, pedidos, entrega ou contato.',
-  suggestions: ['Quais plantas vocês têm?', 'Como faço um pedido?', 'Como cuidar das plantas?', 'Entrega e pagamento'],
   contact: {
     whatsapp: CONFIG.whatsapp,   // vem da configuração do site
     email: CONFIG.emailDono,     // vem da configuração do site
