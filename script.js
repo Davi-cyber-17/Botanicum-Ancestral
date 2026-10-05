@@ -718,9 +718,9 @@ document.addEventListener('DOMContentLoaded', () => {
    Links especiais: "@whatsapp", "@email" e "@tab:colecao" / "@tab:cultivo".
    ============================================================ */
 const CORONA_CONFIG = {
-  name: 'Corona',
+  name: 'Maconha',
   subtitle: 'Assistente virtual · respostas automáticas',
-  hello: 'Olá! Eu sou a Corona, assistente virtual da Botanicum Ancestral. Pergunte sobre plantas, cultivo, pedidos, entrega ou contato.',
+  hello: 'Olá! Eu sou a Maconha, assistente virtual da Botanicum Ancestral. Pergunte sobre plantas, cultivo, pedidos, entrega ou contato.',
   contact: {
     whatsapp: CONFIG.whatsapp,   // vem da configuração do site
     email: CONFIG.emailDono,     // vem da configuração do site
