@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Botanicum Ancestral — A natureza em sua forma primordial</title>
+<meta name="description" content="Botanicum Ancestral: estufa especializada em plantas carnívoras raras: dioneias, jarros, drósseras e sarracênias, cultivadas e enviadas com cuidado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#07140e">
+<meta property="og:title" content="Botanicum Ancestral">
+<meta property="og:image" content="logo.jpeg">
+<link rel="icon" href="logo.jpeg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <button type="button" class="logo logo-home" data-tab="inicio" aria-label="Ir para o início">
+      <span class="logo-mark"><img src="logo.jpeg" alt="Logo Botanicum Ancestral"></span>
+      <span class="logo-word">Botanicum <b>Ancestral</b></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" role="tablist" aria-label="Seções do site">
+      <button class="nav-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="tab-inicio" id="tab-btn-inicio" data-tab="inicio">Início</button>
+      <button class="nav-tab" type="button" role="tab" aria-selected="false" aria-controls="tab-colecao" id="tab-btn-colecao" data-tab="colecao">Coleção</button>
+      <button class="nav-tab" type="button" role="tab" aria-selected="false" aria-controls="tab-cultivo" id="tab-btn-cultivo" data-tab="cultivo">Dicas</button>
+    </nav>
+
+    <div class="header-actions">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<button class="cart-fab" id="cartFab" type="button" aria-label="Abrir pedido">
+  <span>Pedido</span>
+  <b id="cartCount">0</b>
+</button>
+
+<div class="order-overlay" id="orderOverlay" aria-hidden="true"></div>
+<aside class="order-panel" id="orderPanel" aria-hidden="true">
+  <div class="order-panel-head">
+    <div>
+      <span class="eyebrow">PEDIDO</span>
+      <h2>Seu pedido</h2>
+    </div>
+    <button class="close-order" id="closeOrder" type="button" aria-label="Fechar pedido">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="empty-cart">
+      <p>Seu pedido está vazio.</p>
+      <small>Escolha uma planta no catálogo para começar.</small>
+    </div>
+  </div>
+  <div class="order-total">
+    <span>Total estimado</span>
+    <strong id="cartTotal">R$ 0,00</strong>
+  </div>
+  <form class="order-form" id="orderForm">
+    <h3 class="form-title">Seus dados</h3>
+    <div class="field">
+      <label for="customerName">Nome completo</label>
+      <input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
+    </div>
+    <div class="field">
+      <label for="customerCpf">CPF</label>
+      <input id="customerCpf" name="customerCpf" type="text" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="000.000.000-00" required>
+    </div>
+    <div class="field">
+      <label for="customerPhone">Telefone com DDD</label>
+      <input id="customerPhone" name="customerPhone" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="15" placeholder="(11) 90000-0000" required>
+    </div>
+    <div class="field">
+      <label for="customerEmail">E-mail</label>
+      <input id="customerEmail" name="customerEmail" type="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+    </div>
+
+    <h3 class="form-title">Endereço de entrega</h3>
+    <div class="field">
+      <label for="customerStreet">Rua e número</label>
+      <input id="customerStreet" name="customerStreet" type="text" autocomplete="address-line1" placeholder="Ex.: Rua das Flores, 123" required>
+    </div>
+    <div class="field">
+      <label for="customerComplement">Complemento <span>(apto, bloco, se tiver)</span></label>
+      <input id="customerComplement" name="customerComplement" type="text" autocomplete="address-line2">
+    </div>
+    <div class="field">
+      <label for="customerDistrict">Bairro</label>
+      <input id="customerDistrict" name="customerDistrict" type="text" autocomplete="address-level3" required>
+    </div>
+    <div class="field">
+      <label for="customerCity">Cidade</label>
+      <input id="customerCity" name="customerCity" type="text" autocomplete="address-level2" required>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="customerState">Estado</label>
+        <select id="customerState" name="customerState" autocomplete="address-level1" required>
+          <option value="">UF</option><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG">MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="customerZip">CEP</label>
+        <input id="customerZip" name="customerZip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="customerNote">Observação <span>(opcional)</span></label>
+      <textarea id="customerNote" name="customerNote" rows="3" placeholder="Ex.: quero saber sobre o prazo de envio..."></textarea>
+    </div>
+    <button class="whatsapp-btn" type="submit">Enviar pedido pelo WhatsApp <span>↗</span></button>
+    <small class="order-disclaimer">Seus dados serão enviados ao vendedor junto com o pedido, por mensagem de WhatsApp, e usados apenas para entrega e contato. O pagamento e a confirmação serão combinados diretamente com ele.</small>
+  </form>
+</aside>
+
+<main id="top">
+
+  <!-- ABA INÍCIO -->
+  <section class="tab-panel" id="tab-inicio" role="tabpanel" aria-labelledby="tab-btn-inicio">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">A natureza em sua forma primordial</span>
+        <h1>Plantas carnívoras de coleção.</h1>
+        <p class="hero-lede">Coleção de dioneias, jarros e drósseras cultivada em estufa própria e enviada a colecionadores em todo o Brasil. Cada espécime é entregue enraizado, catalogado e acompanhado de orientações de cultivo.</p>
+        <div class="hero-actions">
+          <button type="button" class="btn btn-solid tab-link" data-tab="colecao">Ver catálogo</button>
+          <button type="button" class="btn btn-ghost tab-link" data-tab="cultivo">Dicas de cultivo</button>
+        </div>
+        <p class="hero-caption">Em estufa desde 2013 — mais de 40 espécies mantidas em cultivo contínuo.</p>
+      </div>
+
+      <div class="hero-figure">
+        <div class="logo-seal">
+          <img src="logo.jpeg" alt="Botanicum Ancestral — a natureza em sua forma primordial">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY STRIP -->
+  <section class="strip">
+    <p class="strip-text">As plantas carnívoras evoluíram em solos pobres em nutrientes e desenvolveram mecanismos próprios de captura. Reunimos aqui espécimes cultivados em estufa, saudáveis e adequados ao cultivo doméstico.</p>
+  </section>
+
+  <section class="trust-strip" aria-label="Destaques da loja">
+    <div><strong>I</strong><span>Plantas selecionadas</span></div>
+    <div><strong>II</strong><span>Envio para todo o Brasil</span></div>
+    <div><strong>III</strong><span>Pedido direto pelo WhatsApp</span></div>
+    <div><strong>IV</strong><span>Orientação de cultivo</span></div>
+  </section>
+  </section>
+
+  <!-- ABA COLEÇÃO -->
+  <section class="collection tab-panel" id="tab-colecao" role="tabpanel" aria-labelledby="tab-btn-colecao" hidden>
+    <div class="section-head">
+      <h2>O catálogo</h2>
+      <p>Espécimes cultivados em estufa e organizados por categoria. Use o filtro para ver apenas o grupo de plantas do seu interesse.</p>
+    </div>
+
+    <div class="filter-bar" id="filterBar" role="group" aria-label="Filtrar plantas por categoria"></div>
+
+    <div class="specimen-list" id="specimenList" aria-live="polite">
+      <p class="catalog-status">Carregando catálogo…</p>
+      <noscript><p class="catalog-status">Ative o JavaScript para ver o catálogo ou fale conosco pelo WhatsApp.</p></noscript>
+    </div>
+    <p class="photo-credit">Fotografias das plantas do próprio acervo. Cada exemplar pode variar levemente em tamanho e aspecto.</p>
+  </section>
+
+  <!-- ABA CULTIVO -->
+  <section class="care tab-panel" id="tab-cultivo" role="tabpanel" aria-labelledby="tab-btn-cultivo" hidden>
+    <div class="guide" id="guiaPlantas">
+      <div class="guide-head">
+        <span class="eyebrow">CUIDADOS E CULTIVO</span>
+        <h2>Guia por planta</h2>
+        <p>Plantas carnívoras: um espaço para cada espécie, com as características de cultivo e o motivo de tê-la na coleção. Toque no nome para ir direto à planta.</p>
+        <nav class="guide-index" aria-label="Ir para uma planta">
+          <a href="#dica-brocchinia-reducta">Brocchinia reducta</a>
+          <a href="#dica-cephalotus-follicularis">Cephalotus follicularis</a>
+          <a href="#dica-darlingtonia-californica">Darlingtonia californica</a>
+          <a href="#dica-dionaea-muscipula">Dionaea muscipula</a>
+          <a href="#dica-drosera">Drosera</a>
+          <a href="#dica-heliamphora">Heliamphora</a>
+          <a href="#dica-nepenthes">Nepenthes</a>
+          <a href="#dica-pinguicula">Pinguicula</a>
+          <a href="#dica-sarracenia">Sarracenia</a>
+          <a href="#dica-stylidium">Stylidium</a>
+          <a href="#dica-utricularia">Utricularia</a>
+        </nav>
+      </div>
+    <article class="guide-plant" id="dica-brocchinia-reducta">
+      <figure class="guide-figure"><img src="img/dicas/dica-01.jpg" alt="Brocchinia reducta — Bromélia carnívora" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 01</span>
+        <h3><em>Brocchinia reducta</em> <span class="common">— Bromélia carnívora</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> intermediária</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">A Brocchinia reducta é uma bromélia especializada que forma uma roseta de folhas rígidas, verticais e sobrepostas, criando um reservatório central capaz de acumular água. Sua estrutura e suas adaptações permitem capturar pequenos animais, dos quais obtém nutrientes. Ao contrário de muitas plantas carnívoras de ambientes alagados, ela também precisa de atenção à circulação de ar e à condição das raízes.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Prefere iluminação muito intensa e pode receber sol direto quando aclimatada gradualmente. Em locais muito quentes, observe se as folhas apresentam sinais de queimadura ou desidratação. Uma posição clara, com boa ventilação, costuma ser essencial para um desenvolvimento saudável.</dd></div>
+<div class="guide-item"><dt>Água e umidade</dt><dd>Utilize água de baixa concentração mineral, como água da chuva limpa ou água destilada. A roseta pode manter água, mas é importante acompanhar sua qualidade e evitar que resíduos se acumulem. O substrato deve conservar alguma umidade sem ficar compactado e sem impedir a oxigenação das raízes.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Prefira uma mistura pobre em nutrientes, leve e bem aerada, com materiais como esfagno, perlita e outros componentes adequados ao cultivo de plantas carnívoras. Não utilize terra comum, adubo orgânico ou substratos previamente fertilizados.</dd></div>
+<div class="guide-item"><dt>Temperatura e ventilação</dt><dd>Adapte a planta às condições locais e evite mudanças bruscas. Calor intenso associado a ar parado e substrato encharcado pode favorecer problemas nas raízes. Uma boa circulação de ar ajuda a manter a planta saudável.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não é necessário colocar insetos manualmente na roseta. Em condições adequadas, a planta pode capturar pequenas presas naturalmente. Nunca ofereça carne, restos de alimentos ou fertilizantes convencionais.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ocorrer por sementes ou por brotações laterais, dependendo da planta e das condições de cultivo. Separe brotos somente quando estiverem suficientemente desenvolvidos para sobreviver de forma independente.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>A Brocchinia reducta combina a aparência de uma bromélia exótica com uma estratégia de captura de presas pouco comum. Sua roseta geométrica e seu reservatório central fazem dela uma peça de destaque em coleções de plantas incomuns. É uma ótima escolha para quem deseja ir além das carnívoras mais conhecidas e cultivar uma planta que une beleza, adaptação e curiosidade científica.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-cephalotus-follicularis">
+      <figure class="guide-figure"><img src="img/dicas/dica-02.jpg" alt="Cephalotus follicularis — Planta-jarro-australiana" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 02</span>
+        <h3><em>Cephalotus follicularis</em> <span class="common">— Planta-jarro-australiana</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> intermediária a difícil</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">A Cephalotus follicularis forma uma roseta pequena, com folhas comuns e jarros de aparência robusta, providos de uma abertura ornamentada por estruturas semelhantes a dentes. Seu cultivo exige equilíbrio entre luz, umidade e oxigenação das raízes. Embora seja uma planta compacta, pode ser sensível a condições inadequadas e a alterações bruscas no ambiente.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Forneça luz intensa, aumentando a exposição gradualmente. Uma boa iluminação favorece a formação de jarros e a coloração da planta. Em períodos de calor excessivo, proteja-a do sol mais forte caso o vaso e as raízes aqueçam demais.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato úmido, mas evite deixá-lo continuamente saturado. O uso de uma bandeja com água pode ser útil em determinadas condições, porém a profundidade e a duração do contato devem ser ajustadas para não prejudicar as raízes. Prefira água da chuva limpa, destilada ou de mineralização muito baixa.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Utilize uma mistura ácida ou apropriada para carnívoras, pobre em nutrientes e com boa drenagem. Esfagno, perlita e areia de sílica lavada podem compor a mistura, desde que o resultado mantenha umidade sem compactação.</dd></div>
+<div class="guide-item"><dt>Temperatura e umidade</dt><dd>Precisa de boa ventilação e condições relativamente estáveis. O calor excessivo no vaso, especialmente quando combinado com água parada e pouca circulação de ar, aumenta o risco de deterioração das raízes. Não é obrigatório mantê-la permanentemente dentro de um terrário fechado.</dd></div>
+<div class="guide-item"><dt>Dormência</dt><dd>Não aplique automaticamente o mesmo tratamento de inverno usado para Dionaea e Sarracenia. A resposta sazonal depende das condições e da procedência da planta; o mais importante é manter um ciclo de cultivo estável e evitar mudanças drásticas.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não precisa receber insetos regularmente. A planta consegue crescer sem alimentação manual quando dispõe de iluminação e condições adequadas. Evite adubos convencionais e alimentos humanos.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ser feita por sementes, divisão de plantas desenvolvidas e determinados tipos de estacas de folhas ou raízes. Os métodos exigem cuidado e podem apresentar resultados lentos ou variáveis.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>A Cephalotus follicularis parece uma pequena criatura de outro mundo. Seus jarros têm uma aparência detalhada, com bordas dentadas, cores que variam conforme as condições de cultivo e uma estrutura que recompensa a observação de perto. Por ocupar relativamente pouco espaço, é uma opção interessante para colecionadores que desejam uma carnívora rara, detalhada e diferente das espécies mais populares.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-darlingtonia-californica">
+      <figure class="guide-figure"><img src="img/dicas/dica-03.jpg" alt="Darlingtonia californica — Planta-cobra" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 03</span>
+        <h3><em>Darlingtonia californica</em> <span class="common">— Planta-cobra</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> difícil</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">A Darlingtonia californica é conhecida por seus jarros que lembram uma cobra erguida, com uma estrutura semelhante a um capuz e apêndices que recordam presas. Na natureza, está associada a locais úmidos, frequentemente alimentados por água fria. Seu principal desafio em cultivo é manter as raízes frescas e oxigenadas, especialmente em regiões de clima quente.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Precisa de bastante luz para desenvolver jarros vigorosos. Pode receber sol direto, desde que seja aclimatada e que a temperatura das raízes permaneça controlada. Uma planta exposta a sol intenso em um vaso que esquenta muito pode sofrer mesmo quando o substrato está úmido.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato constantemente úmido, utilizando água de baixa mineralização. Evite que o sistema radicular fique submetido a condições quentes, estagnadas e pouco oxigenadas. A qualidade da água e a drenagem são tão importantes quanto a frequência de rega.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Use uma mistura pobre em nutrientes, ácida, arejada e capaz de conservar umidade. Esfagno, perlita e areia de sílica lavada podem ser utilizados em combinações adequadas ao clima e ao recipiente.</dd></div>
+<div class="guide-item"><dt>Temperatura</dt><dd>Este é o ponto mais delicado. As raízes precisam permanecer frescas, sobretudo durante períodos quentes. O uso de recipientes que aqueçam pouco, sombreamento do vaso e água fresca pode ajudar. Colocar gelo diretamente no substrato não é uma solução universal e pode provocar oscilações térmicas prejudiciais.</dd></div>
+<div class="guide-item"><dt>Dormência</dt><dd>A planta apresenta um ciclo sazonal e pode reduzir o crescimento em períodos menos favoráveis. Respeite sua sazonalidade e não tente mantê-la em crescimento acelerado durante todo o ano por meio de calor constante.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não é necessário alimentar manualmente os jarros de forma regular. Não ofereça carne, insetos grandes demais ou fertilizantes comuns.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ocorrer por divisão de brotações do rizoma e por sementes. A divisão deve ser feita com cuidado para não danificar as raízes e os pontos de crescimento.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>A Darlingtonia californica é uma das plantas carnívoras mais impressionantes visualmente. Seus jarros lembram pequenas cobras verdes prontas para atacar, com detalhes naturais que parecem projetados. É ideal para quem gosta de espécies raras, formas incomuns e desafios de cultivo. Mais do que uma planta decorativa, ela se torna uma peça de conversa e uma demonstração da diversidade de estratégias desenvolvidas pelas plantas.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-dionaea-muscipula">
+      <figure class="guide-figure"><img src="img/dicas/dica-04.jpg" alt="Dionaea muscipula — Papa-moscas" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 04</span>
+        <h3><em>Dionaea muscipula</em> <span class="common">— Papa-moscas</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> fácil a intermediária</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">A Dionaea muscipula é uma das carnívoras mais conhecidas. Suas folhas formam armadilhas articuladas que se fecham quando determinados estímulos são detectados pelos pelos sensoriais internos. Apesar da aparência delicada, é uma planta perene que precisa de bastante luz e de um período sazonal de repouso.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Prefira sol direto por várias horas ao dia, aumentando a exposição gradualmente para evitar queimaduras. Em geral, uma boa quantidade de luz é indispensável para produzir folhas compactas, armadilhas saudáveis e coloração avermelhada em muitas variedades.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato úmido com água da chuva limpa, destilada ou de mineralização muito baixa. O método da bandeja costuma funcionar bem durante o crescimento ativo, mas a quantidade de água deve ser ajustada ao clima e à estação. Não use água de torneira sem conhecer sua composição mineral.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Utilize uma mistura pobre em nutrientes, normalmente baseada em turfa de esfagno sem fertilizantes e perlita, ou outro substrato especializado para plantas carnívoras. Não plante em terra comum nem acrescente adubo.</dd></div>
+<div class="guide-item"><dt>Temperatura e dormência</dt><dd>A Dionaea precisa de um período de dormência sazonal, geralmente durante os meses mais frios. Nesse período, o crescimento diminui e algumas folhas podem escurecer. A duração e as condições devem respeitar o clima e o estado da planta; não se deve confundir dormência com morte. Em regiões brasileiras quentes, é importante pesquisar como proporcionar um repouso adequado sem submeter a planta a temperaturas extremas.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Se estiver ao ar livre, pode capturar presas naturalmente. Não é necessário alimentar cada armadilha. Nunca ofereça carne, queijo ou outros alimentos humanos. Evite provocar o fechamento das armadilhas repetidamente, pois isso consome energia sem trazer benefício à planta.</dd></div>
+<div class="guide-item"><dt>Manutenção</dt><dd>Remova folhas totalmente mortas quando necessário, sem danificar o centro de crescimento. Não é preciso cortar todas as folhas escurecidas de uma vez se a planta estiver entrando em dormência.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ser feita por sementes, divisão de plantas maduras e técnicas de estaquia foliar. A divisão e as estacas devem preservar tecidos saudáveis e receber condições apropriadas de luz e umidade.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>A Dionaea transforma um fenômeno natural em algo que se pode observar de perto: suas armadilhas respondem ao toque e fecham em uma fração de segundo. É uma das melhores escolhas para despertar o interesse de crianças, jovens e adultos pela botânica, desde que seja tratada como uma planta viva, e não como um brinquedo. Para quem está começando uma coleção, oferece uma combinação única de interação, beleza e aprendizado.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-drosera">
+      <figure class="guide-figure"><img src="img/dicas/dica-05.jpg" alt="Drosera — Orvalhinhas" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 05</span>
+        <h3><em>Drosera</em> <span class="common">— Orvalhinhas</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> fácil a avançada, conforme a espécie</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">Drosera é um gênero muito diverso. Suas espécies apresentam folhas com tentáculos glandulares que produzem uma substância pegajosa, capaz de capturar pequenos animais. Algumas são tropicais e relativamente fáceis, enquanto outras precisam de frio sazonal, repouso seco ou condições mais específicas. Por isso, a identificação da espécie é fundamental.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Muitas Droseras precisam de luz intensa e algumas se desenvolvem bem sob sol direto. Espécies tropicais como Drosera capensis costumam ser boas opções para iniciantes. Outras espécies podem precisar de proteção contra o calor excessivo ou de condições sazonais específicas.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha a umidade adequada ao grupo. Muitas espécies de brejo aceitam o cultivo em bandeja com água de baixa mineralização; espécies de ambientes mais secos, tuberosas ou adaptadas a ciclos sazonais podem exigir um regime diferente. Não presuma que todas toleram o mesmo nível de encharcamento.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Use uma mistura pobre em nutrientes, geralmente baseada em turfa sem fertilizantes, esfagno e/ou areia de sílica lavada e perlita, conforme a espécie. Algumas Droseras exigem substratos mais arenosos ou específicos para sua forma de crescimento.</dd></div>
+<div class="guide-item"><dt>Temperatura e dormência</dt><dd>As necessidades variam amplamente. Espécies tropicais podem crescer durante boa parte do ano, enquanto espécies temperadas necessitam de repouso frio e espécies tuberosas podem apresentar dormência seca. Pesquise o ciclo da espécie antes de definir a rotina de rega.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>A captura natural de pequenos insetos costuma ser suficiente. Não aplique fertilizantes nas folhas sem conhecer a tolerância da espécie e evite oferecer alimentos humanos.</dd></div>
+<div class="guide-item"><dt>Manutenção</dt><dd>Evite manipular os tentáculos pegajosos. Folhas velhas podem ser retiradas quando estiverem completamente mortas, mas o centro de crescimento deve permanecer intacto.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Dependendo da espécie, pode ser realizada por sementes, divisão, estacas de folhas ou raízes. Algumas espécies produzem gemas de propagação, enquanto outras exigem técnicas e ciclos específicos.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Droseras parecem cobertas por pequenas gotas de orvalho, que brilham quando recebem luz. Essa aparência delicada esconde um mecanismo de captura de presas extraordinário. Como existem espécies de diversos tamanhos, cores e hábitos de crescimento, é possível começar com uma variedade resistente e depois explorar formas mais raras. São plantas que recompensam a observação atenta e mostram como a natureza pode ser ao mesmo tempo delicada e engenhosa.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-heliamphora">
+      <figure class="guide-figure"><img src="img/dicas/dica-06.jpg" alt="Heliamphora — Plantas-jarro dos tepuis" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 06</span>
+        <h3><em>Heliamphora</em> <span class="common">— Plantas-jarro dos tepuis</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> difícil</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">As Heliamphora produzem jarros verticais com formato de trombeta, adaptados à captura de pequenos animais. Muitas espécies estão associadas aos tepuis, formações montanhosas com condições ambientais particulares. No cultivo, o desafio é equilibrar iluminação intensa, umidade, circulação de ar e temperatura, especialmente durante a noite.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Precisam de iluminação intensa para crescer bem e formar jarros vigorosos. Podem ser cultivadas sob iluminação artificial apropriada ou em estufas adaptadas. A exposição deve ser ajustada à temperatura, pois luz intensa acompanhada de calor excessivo pode causar estresse.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato úmido e utilize água de baixa mineralização. A umidade elevada é útil, mas não deve ser confundida com falta de ventilação. As raízes precisam de água e oxigênio.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Prefira misturas leves, pobres em nutrientes e bem aeradas. Esfagno, perlita e areia de sílica lavada são opções utilizadas em combinações que conservam umidade sem compactar.</dd></div>
+<div class="guide-item"><dt>Temperatura e umidade</dt><dd>Muitas espécies apreciam dias moderados e noites mais frescas. A tolerância ao calor varia entre espécies e híbridos, portanto é importante identificar a planta antes de definir as condições. A circulação de ar ajuda a reduzir problemas em ambientes úmidos.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não é necessário colocar insetos nos jarros de forma rotineira. A prioridade deve ser fornecer luz, água e temperatura adequadas. Não utilize adubos convencionais.</dd></div>
+<div class="guide-item"><dt>Dormência</dt><dd>Não imponha automaticamente uma dormência fria semelhante à da Dionaea. As necessidades sazonais dependem da espécie e das condições em que ela cresce.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ser feita por sementes ou pela divisão cuidadosa de touceiras desenvolvidas, quando houver pontos de crescimento independentes. A recuperação após a divisão pode ser lenta.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Heliamphora parecem pequenas trombetas naturais, com jarros elegantes e, em algumas variedades, bordas ou estruturas coloridas. São perfeitas para quem deseja uma coleção com aparência exótica e está disposto a aprofundar seus conhecimentos de cultivo. Sua beleza não depende de flores chamativas: os próprios jarros são o grande espetáculo.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-nepenthes">
+      <figure class="guide-figure"><img src="img/dicas/dica-07.jpg" alt="Nepenthes — Plantas-jarro tropicais" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 07</span>
+        <h3><em>Nepenthes</em> <span class="common">— Plantas-jarro tropicais</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> intermediária, variável conforme a espécie</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">As Nepenthes são plantas tropicais que produzem jarros suspensos na extremidade de folhas modificadas. Esses jarros podem variar bastante em tamanho, formato e cor. Algumas espécies e híbridos são relativamente adaptáveis, enquanto outras exigem condições muito específicas de temperatura e umidade.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Forneça luz intensa, preferencialmente filtrada, evitando exposição abrupta ao sol forte. A luminosidade insuficiente pode produzir folhas alongadas e reduzir a formação de jarros. Algumas espécies e híbridos toleram mais sol do que outros.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato uniformemente úmido, mas bem aerado. Em geral, as Nepenthes não devem permanecer com o vaso continuamente mergulhado em água. Regue por cima e permita que o excesso escorra, ajustando a frequência conforme a temperatura, a ventilação e o substrato.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Utilize materiais leves, pobres em nutrientes e que mantenham umidade sem perder aeração. Esfagno, casca de pinus própria para cultivo, perlita e outros componentes adequados podem ser combinados conforme a espécie e o ambiente.</dd></div>
+<div class="guide-item"><dt>Temperatura</dt><dd>As necessidades variam bastante. As espécies de baixas altitudes normalmente preferem calor mais constante; muitas espécies de regiões montanhosas precisam de noites mais frescas; espécies intermediárias apresentam exigências próprias. Identificar o tipo de Nepenthes é essencial para evitar erros de cultivo.</dd></div>
+<div class="guide-item"><dt>Umidade e ventilação</dt><dd>Uma umidade ambiental adequada ajuda na formação dos jarros, principalmente em plantas jovens e espécies exigentes. Porém, umidade elevada sem circulação de ar não resolve problemas de temperatura ou de raízes.</dd></div>
+<div class="guide-item"><dt>Formação dos jarros</dt><dd>Quando a planta deixa de formar jarros, investigue iluminação, temperatura, umidade, adaptação após transporte e saúde das raízes. Jarros antigos podem secar naturalmente; isso, isoladamente, não significa que a planta esteja morrendo.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não é preciso colocar insetos nos jarros regularmente. Evite carne, alimentos humanos e fertilizantes comuns. Em primeiro lugar, corrija as condições de cultivo.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ser feita por sementes e estacas de caule. A propagação por estacas exige higiene, umidade controlada e paciência até a formação das raízes.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Nepenthes estão entre as carnívoras mais decorativas. Seus jarros pendentes podem apresentar tons de verde, vermelho, vinho e amarelo, além de padrões que variam de uma variedade para outra. Conforme a planta cresce, os jarros mudam de tamanho e aparência, tornando cada fase interessante. Para quem deseja uma planta exótica que chame a atenção em uma prateleira, suporte ou jardim protegido, é uma escolha marcante.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-pinguicula">
+      <figure class="guide-figure"><img src="img/dicas/dica-08.jpg" alt="Pinguicula — Plantas-gordas carnívoras" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 08</span>
+        <h3><em>Pinguicula</em> <span class="common">— Plantas-gordas carnívoras</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> intermediária, variável conforme a espécie</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">As Pinguicula formam rosetas de folhas que produzem uma superfície pegajosa capaz de capturar pequenos insetos. Muitas espécies mexicanas alternam entre uma fase de crescimento com folhas carnívoras e uma fase de repouso com folhas menores e mais suculentas. Outras espécies possuem ciclos e necessidades diferentes.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Prefira luz abundante, geralmente filtrada ou indireta intensa para muitas espécies mexicanas. A quantidade ideal depende da espécie e da resposta da planta. Folhas muito alongadas ou perda de coloração podem indicar luz insuficiente; manchas de queimadura sugerem exposição excessiva ou aclimatação inadequada.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>O manejo muda conforme o ciclo. Durante o crescimento, algumas espécies precisam de umidade regular; durante o repouso de muitas Pinguiculas mexicanas, a rega pode ser reduzida. Não mantenha todas as espécies encharcadas durante o ano inteiro.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Muitas espécies mexicanas crescem bem em misturas minerais e porosas, com materiais como perlita, pedra-pomes, areia de sílica e pequenas proporções de componentes orgânicos. Outras espécies preferem condições mais úmidas e substratos diferentes. A composição deve seguir as necessidades da espécie.</dd></div>
+<div class="guide-item"><dt>Temperatura e ventilação</dt><dd>Mantenha condições estáveis e boa circulação de ar. A combinação de substrato saturado, calor e ventilação insuficiente pode favorecer o apodrecimento. Algumas espécies toleram variações sazonais importantes.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>As folhas capturam pequenos insetos naturalmente. Não é necessário colocar presas manualmente e não se deve aplicar fertilizante comum sobre as folhas.</dd></div>
+<div class="guide-item"><dt>Manutenção</dt><dd>Evite tocar repetidamente na superfície pegajosa. Folhas antigas podem ser retiradas quando estiverem completamente secas, tomando cuidado para não ferir o centro da roseta.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ocorrer por sementes, divisão ou estacas de folhas, conforme a espécie. Em algumas Pinguiculas, folhas destacadas podem formar novas plantas sob condições apropriadas.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Pinguiculas são excelentes para quem deseja uma carnívora compacta, elegante e diferente. Suas rosetas podem lembrar pequenas suculentas, enquanto as flores acrescentam delicadeza e cor. Muitas cabem em espaços reduzidos e ficam bonitas em coleções organizadas por espécie. São uma forma interessante de descobrir que nem todas as plantas carnívoras precisam de grandes jarros ou armadilhas móveis para serem fascinantes.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-sarracenia">
+      <figure class="guide-figure"><img src="img/dicas/dica-09.jpg" alt="Sarracenia — Plantas-jarro norte-americanas" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 09</span>
+        <h3><em>Sarracenia</em> <span class="common">— Plantas-jarro norte-americanas</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> fácil a intermediária</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">As Sarracenia produzem folhas modificadas em forma de tubos ou trombetas, que atraem e capturam pequenos animais. Muitas espécies desenvolvem jarros altos, com padrões contrastantes e cores intensas. São especialmente indicadas para cultivo em locais com bastante sol, desde que recebam água adequada e tenham espaço para crescer.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Precisam de muita luz e, em geral, desenvolvem-se melhor com várias horas de sol direto. A exposição deve ser gradual para evitar queimaduras em plantas recém-adquiridas. Pouca luz pode resultar em jarros fracos e menos coloridos.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Mantenha o substrato constantemente úmido durante o crescimento ativo. O método da bandeja costuma funcionar bem, usando água de baixa mineralização. Ajuste a quantidade de água conforme a estação, a temperatura e as necessidades da espécie.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Utilize substrato pobre em nutrientes, frequentemente à base de turfa de esfagno sem fertilizantes e perlita ou areia de sílica lavada. Não use terra de jardim, composto orgânico fertilizado ou adubos convencionais.</dd></div>
+<div class="guide-item"><dt>Temperatura e dormência</dt><dd>Muitas Sarracenias precisam de um período de dormência sazonal. Durante essa fase, o crescimento diminui e parte dos jarros pode secar. A duração e a intensidade do repouso variam conforme a espécie; não trate todas as variedades como se tivessem a mesma tolerância ao frio.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Quando cultivadas ao ar livre, podem capturar presas naturalmente. Não é necessário alimentar os jarros manualmente. Evite colocar carne, alimentos humanos ou fertilizantes nas armadilhas.</dd></div>
+<div class="guide-item"><dt>Manutenção</dt><dd>Jarros antigos podem secar naturalmente, especialmente após a fase de crescimento. Remova apenas o material morto quando necessário, com cuidado para não danificar o rizoma e os novos brotos.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ser realizada por sementes ou divisão de plantas maduras. A divisão do rizoma permite separar pontos de crescimento, mas deve ser feita com cuidado e preferencialmente quando a planta estiver em uma fase apropriada.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Sarracenias transformam um espaço ensolarado em uma coleção cheia de cor e formas verticais. Seus jarros podem apresentar veios vermelhos, áreas brancas translúcidas, tons verdes e bordas contrastantes. Algumas variedades produzem estruturas altas e imponentes, enquanto outras formam conjuntos compactos. Para quem dispõe de uma varanda, quintal ou área externa bem iluminada, são plantas capazes de criar um visual realmente extraordinário.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-stylidium">
+      <figure class="guide-figure"><img src="img/dicas/dica-10.jpg" alt="Stylidium — Plantas-gatilho" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 10</span>
+        <h3><em>Stylidium</em> <span class="common">— Plantas-gatilho</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> variável conforme a espécie</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">O gênero Stylidium reúne plantas conhecidas como plantas-gatilho. Suas flores possuem uma estrutura reprodutiva sensível que se movimenta rapidamente quando estimulada, ajudando na transferência de pólen. Algumas espécies também apresentam características associadas à captura e à digestão de pequenos insetos, mas o gênero não deve ser tratado indiscriminadamente como um grupo de plantas carnívoras plenamente confirmado.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Varia conforme a espécie. Algumas preferem locais ensolarados, enquanto outras estão adaptadas a condições diferentes. A identificação correta é indispensável para determinar a exposição ideal.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>A rega deve respeitar o habitat da espécie. Algumas vivem em ambientes sazonalmente úmidos; outras estão adaptadas a condições mais secas. Não aplique automaticamente o método de bandeja usado para Dionaea e Sarracenia.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Utilize uma mistura compatível com a espécie, evitando excesso de nutrientes e compactação. A proporção de areia, componentes minerais e matéria orgânica deve acompanhar as necessidades da planta.</dd></div>
+<div class="guide-item"><dt>Temperatura e umidade</dt><dd>Algumas espécies são adaptadas a condições temperadas, outras a ambientes subtropicais ou a períodos de seca. Não existe uma faixa universal para todo o gênero. A ventilação e a adaptação gradual às condições locais ajudam a reduzir o estresse.</dd></div>
+<div class="guide-item"><dt>Ciclo sazonal</dt><dd>Algumas espécies podem apresentar repouso ou mudanças de crescimento relacionadas às estações. A redução da rega ou o período de dormência só devem ser aplicados quando forem apropriados à espécie identificada.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Não ofereça insetos manualmente sem conhecer as necessidades da espécie. Mesmo quando há características associadas à captura de pequenos animais, isso não significa que a planta exija alimentação adicional para crescer.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ocorrer por sementes e, em algumas espécies, por outros métodos vegetativos. O procedimento deve ser definido conforme o hábito de crescimento da planta.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>O Stylidium é uma escolha para quem gosta de descobrir mecanismos pouco conhecidos do mundo vegetal. Suas flores apresentam um movimento rápido e incomum, transformando a observação da floração em uma experiência fascinante. É uma opção especialmente interessante para colecionadores curiosos, interessados em plantas diferentes das tradicionais. Antes da compra, vale confirmar a espécie e suas exigências de cultivo para garantir uma boa experiência.</p></aside>
+      </div>
+    </article>
+    <article class="guide-plant" id="dica-utricularia">
+      <figure class="guide-figure"><img src="img/dicas/dica-11.jpg" alt="Utricularia — Plantas-vesícula" loading="lazy" referrerpolicy="no-referrer"></figure>
+      <div class="guide-body">
+        <span class="guide-no">Planta N.º 11</span>
+        <h3><em>Utricularia</em> <span class="common">— Plantas-vesícula</span></h3>
+        <p class="guide-level"><span>Dificuldade</span> intermediária a avançada, conforme a espécie</p>
+        <h4>Características de cultivo</h4>
+        <p class="guide-intro">As Utricularia são conhecidas por suas pequenas armadilhas de sucção, chamadas vesículas, que capturam organismos microscópicos ou pequenas presas. Essas estruturas frequentemente ficam escondidas no substrato ou debaixo d&#x27;água. O gênero inclui espécies terrestres, aquáticas e epífitas, portanto suas necessidades podem ser muito diferentes.</p>
+        <dl class="guide-list">
+<div class="guide-item"><dt>Iluminação</dt><dd>Espécies terrestres floríferas costumam precisar de boa luminosidade para crescer e florescer. Espécies aquáticas e epífitas possuem exigências próprias, que devem ser verificadas individualmente. Evite colocar uma espécie recém-adquirida diretamente sob sol forte sem aclimatação.</dd></div>
+<div class="guide-item"><dt>Água</dt><dd>Espécies terrestres de brejo geralmente preferem substrato úmido; espécies aquáticas precisam de um meio aquático estável; espécies epífitas dependem de umidade e ventilação adequadas. A água deve apresentar baixa concentração mineral, e a rega precisa acompanhar o tipo de cultivo.</dd></div>
+<div class="guide-item"><dt>Substrato</dt><dd>Para espécies terrestres, podem ser usadas misturas pobres em nutrientes, com turfa sem fertilizantes, esfagno e areia de sílica lavada, conforme a espécie. As aquáticas precisam de condições próprias para cultivo submerso, enquanto as epífitas podem exigir materiais mais arejados.</dd></div>
+<div class="guide-item"><dt>Temperatura e umidade</dt><dd>Variam conforme a origem e o tipo de crescimento. Muitas espécies tropicais apreciam condições relativamente estáveis, mas não se deve aplicar uma mesma faixa de temperatura a todo o gênero.</dd></div>
+<div class="guide-item"><dt>Alimentação</dt><dd>Suas armadilhas capturam organismos muito pequenos, frequentemente invisíveis a olho nu. Não é necessário colocar insetos manualmente nas armadilhas. Evite fertilizantes convencionais e alimentos que possam deteriorar a água ou o substrato.</dd></div>
+<div class="guide-item"><dt>Manutenção</dt><dd>Observe a espécie e o sistema de cultivo. Em espécies aquáticas, a qualidade da água e a estabilidade do ambiente são fundamentais; nas terrestres, é necessário equilibrar umidade e oxigenação. Mudanças bruscas podem prejudicar o desenvolvimento.</dd></div>
+<div class="guide-item"><dt>Propagação</dt><dd>Pode ocorrer por sementes, fragmentação do crescimento vegetativo ou divisão, dependendo da espécie. Algumas se espalham rapidamente em condições favoráveis, enquanto outras são mais lentas e exigentes.</dd></div>
+        </dl>
+        <aside class="guide-why"><h4>Por que cultivar esta planta?</h4><p>As Utricularias escondem uma das estratégias de captura mais surpreendentes entre as plantas carnívoras: armadilhas minúsculas que funcionam por sucção. Muitas espécies também produzem flores delicadas, coloridas e de formatos incomuns. A variedade de hábitos de crescimento permite explorar desde pequenos vasos até sistemas aquáticos especializados. Para quem gosta de plantas discretas, mecanismos naturais complexos e descobertas que vão além da aparência, as Utricularias são uma adição fascinante à coleção.</p></aside>
+      </div>
+    </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-seal"><img src="logo.jpeg" alt=""></div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-word">Botanicum <b>Ancestral</b></span>
+      <p>Estufa de plantas carnívoras. Cultivo, catalogação e envio para todo o Brasil.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Loja</h4>
+        <button type="button" class="footer-tab-link" data-tab="colecao">Catálogo</button>
+        <button type="button" class="footer-tab-link" data-tab="cultivo">Dicas de cultivo</button>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <a href="mailto:botanicumancestral@gmail.com">botanicumancestral@gmail.com</a>
+        <a href="#" id="footerWhatsApp">WhatsApp do vendedor</a>
+        <a href="https://www.instagram.com/" id="footerInstagram" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Botanicum Ancestral (abre em nova aba)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Botanicum Ancestral. Todas as plantas são cultivadas em ambiente controlado.</span>
+  </div>
+</footer>
+
+<!-- ASSISTENTE VIRTUAL: CORONA -->
+<button class="corona-open" id="corona-open" type="button" aria-expanded="false" aria-controls="corona">
+  <span class="corona-open-avatar"><img src="logo.jpeg" alt=""></span>
+  <span>Corona</span>
+</button>
+
+<section class="corona" id="corona" role="dialog" aria-label="Assistente virtual Corona" tabindex="-1" hidden>
+  <header class="corona-header">
+    <span class="corona-avatar" aria-hidden="true"><img src="logo.jpeg" alt=""></span>
+    <div class="corona-title">
+      <strong id="corona-name">Corona</strong>
+      <small id="corona-subtitle">Assistente virtual · respostas automáticas</small>
+    </div>
+    <button class="corona-close" id="corona-close" type="button" aria-label="Fechar assistente">×</button>
+  </header>
+
+  <div class="corona-log" id="corona-log" role="log" aria-live="polite" aria-label="Conversa com a Corona"></div>
+
+  <form class="corona-form" id="corona-form" autocomplete="off">
+    <label class="sr-only" for="corona-input">Escreva sua pergunta</label>
+    <input id="corona-input" maxlength="200" placeholder="Escreva sua pergunta..." autocomplete="off">
+    <button class="corona-send" type="submit" aria-label="Enviar pergunta">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-6.5L4 12z"></path></svg>
+    </button>
+  </form>
+</section>
+
+<script src="script.js"></script>
+
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar imagem">&times;</button>
+  <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+</body>
+</html>
